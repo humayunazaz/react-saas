@@ -10,7 +10,9 @@ import DocumentsPage from './pages/Documents';
 import MyTeamPage from './pages/My-Team';
 import MessagesPage from './pages/Messages';
 import RootPage from './pages/Root';
-import { tokenLoader } from './utils/auth';
+import { tokenLoader, alreadyLoggedInLoader } from './utils/auth';
+import SignupPage from './pages/Signup';
+import NotFoundPage from './pages/NotFound';
 
 function App() {
   const BrowserRouter = createBrowserRouter([
@@ -18,6 +20,7 @@ function App() {
       path: '/',
       element: <RootPage />,
       loader: tokenLoader,
+      errorElement: <NotFoundPage />,
       children: [
         { index: true, element: <Dashboard /> },
         { path: 'company-profile', element: <CompanyProfilePage /> },
@@ -28,9 +31,10 @@ function App() {
         { path: 'messages', element: <MessagesPage /> },
       ],
     },
-    { path: 'login', element: <Login /> },
+    { path: 'login', element: <Login />, loader: alreadyLoggedInLoader },
     { path: 'forgot-password', element: <ForgotPassword /> },
     { path: 'reset-password', element: <ResetPassword /> },
+    { path: 'signup', element: <SignupPage /> },
   ]);
   return (
     <main>

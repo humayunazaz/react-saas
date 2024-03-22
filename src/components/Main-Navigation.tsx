@@ -1,5 +1,6 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
+import { removeAuthToken } from '../utils/auth';
 const NAVIGATIONMENU: { name: string; path: string }[] = [
   { name: 'Dashboard', path: '/' },
   { name: 'Company Profile', path: 'company-profile' },
@@ -10,6 +11,12 @@ const NAVIGATIONMENU: { name: string; path: string }[] = [
   { name: 'Messages', path: 'messages' },
 ];
 const MainNavigation = () => {
+  const navigate = useNavigate();
+
+  const logoutHandler = () => {
+    removeAuthToken();
+    navigate('/login');
+  };
   return (
     <nav>
       <ul>
@@ -18,6 +25,7 @@ const MainNavigation = () => {
             <NavLink to={item.path}>{item.name}</NavLink>
           </li>
         ))}
+        <li onClick={logoutHandler}>Logout</li>
       </ul>
     </nav>
   );

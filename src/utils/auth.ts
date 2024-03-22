@@ -20,4 +20,12 @@ const tokenLoader: LoaderFunction<string | undefined> = async () => {
   return token;
 };
 
-export { setAuthToken, removeAuthToken, getAuthToken, tokenLoader };
+const alreadyLoggedInLoader: LoaderFunction<string | undefined> = async () => {
+  const token = getAuthToken();
+  if (token) {
+    return redirect('/');
+  }
+  return token;
+};
+
+export { setAuthToken, removeAuthToken, getAuthToken, tokenLoader, alreadyLoggedInLoader };
