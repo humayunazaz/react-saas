@@ -1,13 +1,17 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
-import MainNavigation from '../components/Main-Navigation';
+import SideNavigation from '../components/SideNavigation';
 
 const RootPage = () => {
   return (
-    <main>
-      <MainNavigation />
+    <main className='flex flex-col md:flex-row min-h-screen'>
+      <aside>
+        <SideNavigation />
+      </aside>
 
-      <Outlet />
+      <section>
+        <Outlet />
+      </section>
     </main>
   );
 };
