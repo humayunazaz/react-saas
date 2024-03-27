@@ -1,6 +1,7 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
 import SideNavigation from '../components/SideNavigation';
+import Header from '../components/headers/Headers';
 
 const RootPage = () => {
   return (
@@ -9,7 +10,8 @@ const RootPage = () => {
         <SideNavigation />
       </aside>
 
-      <section>
+      <section className='flex-grow'>
+        <Header />
         <Outlet />
       </section>
     </main>

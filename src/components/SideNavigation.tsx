@@ -11,24 +11,54 @@ const SideNavigation: React.FC = () => {
   };
 
   return (
-    <div className={`bg-gray-800 text-white h-screen ${isCollapsed ? 'w-16' : 'w-64'}`}>
-      <button className='p-2 text-white' onClick={toggleCollapse}>
-        {isCollapsed ? '☰' : '✕'}
-      </button>
-      {!isCollapsed && (
-        <nav className='flex flex-col'>
-          {NavItems.map((item, index) => (
-            <NavLink
-              key={index}
-              to={item.path}
-              className={`p-4 hover:bg-gray-700 flex items-center ${window.location.pathname === item.path ? 'bg-gray-700' : ''}`}
-            >
-              <IconWrapper iconName={item.icon} />
-              <span className='ml-2'>{item.name}</span>
-            </NavLink>
-          ))}
-        </nav>
+    <div className={`bg-gray-800 text-white h-screen ${isCollapsed ? 'w-16' : 'w-64'} relative`}>
+      {isCollapsed && (
+        <div className='openActionContainer absolute top-0 right-[-34px] bg-gray-800'>
+          <button className='p-2 text-white text-xs' onClick={toggleCollapse}>
+            <IconWrapper iconName='close' />
+          </button>
+        </div>
       )}
+      {!isCollapsed && (
+        <div className='openActionContainer text-right'>
+          <button className='p-2 text-white text-sm' onClick={toggleCollapse}>
+            <IconWrapper iconName='menu' />
+          </button>
+        </div>
+      )}
+      <div className='itemsContainer pt-10'>
+        {!isCollapsed && (
+          <nav className='flex flex-col'>
+            {NavItems.map((item, index) => (
+              <NavLink
+                key={index}
+                to={item.path}
+                className={({ isActive }) =>
+                  isActive ? `p-4 hover:bg-gray-700 flex items-center bg-gray-700` : `p-4 hover:bg-gray-700 flex items-center`
+                }
+              >
+                <IconWrapper iconName={item.icon} />
+                <span className='ml-2 text-lg'>{item.name}</span>
+              </NavLink>
+            ))}
+          </nav>
+        )}
+        {isCollapsed && (
+          <div className='flex flex-col'>
+            {NavItems.map((item, index) => (
+              <NavLink
+                key={index}
+                to={item.path}
+                className={({ isActive }) =>
+                  isActive ? `p-4 hover:bg-gray-700 flex items-center bg-gray-700` : `p-4 hover:bg-gray-700 flex items-center`
+                }
+              >
+                <IconWrapper iconName={item.icon} />
+              </NavLink>
+            ))}
+          </div>
+        )}
+      </div>
     </div>
   );
 };
