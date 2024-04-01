@@ -37,7 +37,7 @@ function App() {
     { path: 'signup', element: <SignupPage /> },
   ]);
   return (
-    <main>
+    <main className='bg-gray-100'>
       <RouterProvider router={BrowserRouter} />
     </main>
   );

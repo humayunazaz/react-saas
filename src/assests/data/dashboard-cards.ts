@@ -5,13 +5,13 @@ export const DASHBOARDCARDS: ICardProps[] = [
     title: 'Company Profile',
     lastUpdated: 'Last updated 3 mins ago',
     step: 1,
-    status: 0,
+    status: 2,
   },
   {
     title: 'Company Information',
     lastUpdated: 'Last updated 3 mins ago',
     step: 2,
-    status: 0,
+    status: 1,
   },
   {
     title: 'Questionnaire',

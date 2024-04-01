@@ -5,7 +5,7 @@ export interface ICardProps {
   status: number;
 }
 export enum CardStatus {
-  NotStarted = 0,
-  InProgress = 1,
-  Completed = 2,
+  'Not Started' = 0,
+  'In Progress' = 1,
+  'Completed' = 2,
 }

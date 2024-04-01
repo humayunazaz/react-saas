@@ -9,7 +9,7 @@ const Dashboard = () => {
     <main className='p-5'>
       <div className='topCardContainer flex'>
         {dashboardCards.map((card, index) => (
-          <div className='singleCardContainer flex-1' key={index}>
+          <div className='singleCardContainer flex-1 px-2' key={index}>
             <DashboardCard {...card} />
           </div>
         ))}

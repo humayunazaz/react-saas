@@ -1,19 +1,55 @@
 import React from 'react';
 import { ICardProps } from '../../models/cards';
+import classes from './Cards.module.css';
+
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import Typography from '@mui/material/Typography';
+import { CardStatus } from '../../models/cards';
+
+const STATUSCOLORS: { backgroundColor: string; status: number }[] = [
+  {
+    backgroundColor: 'bg-[#03a61c]',
+    status: 2,
+  },
+  {
+    backgroundColor: 'bg-[#d92525]',
+    status: 0,
+  },
+  {
+    backgroundColor: 'bg-[#f29f05]',
+    status: 1,
+  },
+];
+
+const currentCardColorHandler = (status: number): string => {
+  const currentStatus = STATUSCOLORS.find((item) => item.status === status);
+
+  return currentStatus?.backgroundColor ? currentStatus.backgroundColor : '';
+};
 
 const DashboardCard: React.FC<ICardProps> = ({ title, step, status, lastUpdated }) => {
   return (
-    <div className='max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl'>
-      <div className='md:flex'>
-        <div className='md:flex-shrink-0'>
-          <h1>Step: {step}</h1>
+    <Card className={`max-w-md mx-auto ${classes.customCard}`}>
+      <CardContent className={classes.customCardContent}>
+        <div className='py-3 px-5'>
+          <Typography color='textSecondary' component='h6' variant='body1' className='text-left'>
+            Step: {step}
+          </Typography>
+          <Typography variant='h6' component='h2' className='py-4 text-center'>
+            {title}
+          </Typography>
+          <Typography color='textSecondary' variant='caption' component='p' className='text-right'>
+            {lastUpdated}
+          </Typography>
         </div>
-        <div className='p-8'>
-          <div className='uppercase tracking-wide text-sm text-indigo-500 font-semibold'>{title}</div>
-          <p className='mt-2 text-gray-500'>{lastUpdated}</p>
+        <div className={`${classes.bottomContainer} ${currentCardColorHandler(status)} text-white`}>
+          <Typography variant='h2' className={classes.bottomFont}>
+            {CardStatus[status]}
+          </Typography>
         </div>
-      </div>
-    </div>
+      </CardContent>
+    </Card>
   );
 };
 
