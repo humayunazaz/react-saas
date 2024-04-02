@@ -10,7 +10,7 @@ const RootPage = () => {
         <SideNavigation />
       </aside>
 
-      <section className='flex-grow'>
+      <section className='overflow-y-auto h-screen flex-1'>
         <Header />
         <Outlet />
       </section>
