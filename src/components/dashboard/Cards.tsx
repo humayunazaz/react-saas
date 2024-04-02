@@ -6,6 +6,7 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import { CardStatus } from '../../models/cards';
+import { useNavigate } from 'react-router';
 
 const STATUSCOLORS: { backgroundColor: string; status: number }[] = [
   {
@@ -28,9 +29,15 @@ const currentCardColorHandler = (status: number): string => {
   return currentStatus?.backgroundColor ? currentStatus.backgroundColor : '';
 };
 
-const DashboardCard: React.FC<ICardProps> = ({ title, step, status, lastUpdated }) => {
+const DashboardCard: React.FC<ICardProps> = ({ title, step, status, lastUpdated, route }) => {
+  const navigate = useNavigate();
+
+  const routeHandler = () => {
+    navigate(route);
+  };
+
   return (
-    <Card className={`max-w-md mx-auto ${classes.customCard}`}>
+    <Card className={`max-w-md mx-auto cursor-pointer ${classes.customCard}`} onClick={routeHandler}>
       <CardContent className={classes.customCardContent}>
         <div className='py-3 px-5'>
           <Typography color='textSecondary' component='h6' variant='body1' className='text-left'>

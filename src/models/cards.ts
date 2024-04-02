@@ -3,6 +3,7 @@ export interface ICardProps {
   lastUpdated: string;
   step: number;
   status: number;
+  route: string;
 }
 export enum CardStatus {
   'Not Started' = 0,
