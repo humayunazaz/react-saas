@@ -1,0 +1,11 @@
+.customLeftBorderRadius {
+  border-top-left-radius: 14px;
+  border-bottom-left-radius: 14px;
+}
+.customRightBorderRadius {
+  border-top-right-radius: 14px;
+  border-bottom-right-radius: 14px;
+}
+.customBorderRadius {
+  border-radius: 14px;
+}
